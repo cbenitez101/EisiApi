@@ -1,9 +1,9 @@
 # EISI API Class
 ## _EISI Hotel API Management Class_
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+[![PHP](https://camo.githubusercontent.com/7a890ba64a1aed3ec6f420ce76b2ad5c44310df9c3d1f15a7a3358304343649f/68747470733a2f2f7777772e7068702e6e65742f696d616765732f6c6f676f732f6e65772d7068702d6c6f676f2e737667)](https://github.com/cbenitez101/EisiApi)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/cbenitez101/EisiApi)
 
 Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
 AngularJS-powered HTML5 Markdown editor.
