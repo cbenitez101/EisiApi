@@ -18,6 +18,7 @@ abstract class Log {
     }
     /** Abstract methods */
     abstract public function log($message);
+
     abstract public function showLog();
 
     /**

@@ -53,7 +53,6 @@ enum EisiApiMethod: string
     case POST = 'POST';
 }
 
-
 /**
  * Eisi API Departments enum class
  */
@@ -74,8 +73,6 @@ enum EisiApiTreeType: string
     case HOTEL = 'H';
     case OTRASZONAS = 'OZ';
 }
-
-
 
 /**
  * Eisi API class
@@ -145,7 +142,6 @@ class EisiApi
     {
         $this->lang = $lang;
     }
-
 
     /**
      * Sets the log message

@@ -1,7 +1,5 @@
 <?php
-
 require_once 'lib/EisiApi.php';
-
 
 /** Log Class Testing */
 // Usage example: TextLog
@@ -23,8 +21,6 @@ require_once 'lib/EisiApi.php';
 // $fileLog->showLog();
 
 /** End Log Class Testing */
-
-
 
 /** EisiApi Class Testing */
 $api = new EisiApi(
@@ -91,7 +87,6 @@ $api->log("PARAMS :: " . json_encode(
 
 $api->log("RESPONSE :: " . EisiApiEndpoint::ProblemsTree->value . " :: " . json_encode($response));
 
-
 /**
  * 3. Crear Task Body
  */
@@ -116,7 +111,6 @@ $api->log("TASK-BODY :: " . json_encode($body));
  */
 // $response = $api->makeApiCall(endpoint: EisiApiEndpoint::CreateTask, body: $body);
 // $api->log("RESPONSE: " . EisiApiEndpoint::ProblemsTree->value . " : " . json_encode($response));
-
 
 /**
  * 5. Listado de departamentos
