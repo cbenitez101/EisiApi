@@ -1,26 +1,24 @@
 # EISI API Class
 ## _EISI Hotel API Management Class_
 
-[![PHP](https://camo.githubusercontent.com/7a890ba64a1aed3ec6f420ce76b2ad5c44310df9c3d1f15a7a3358304343649f/68747470733a2f2f7777772e7068702e6e65742f696d616765732f6c6f676f732f6e65772d7068702d6c6f676f2e737667)](https://github.com/cbenitez101/EisiApi)
+<!-- [![PHP](https://camo.githubusercontent.com/7a890ba64a1aed3ec6f420ce76b2ad5c44310df9c3d1f15a7a3358304343649f/68747470733a2f2f7777772e7068702e6e65742f696d616765732f6c6f676f732f6e65772d7068702d6c6f676f2e737667)](https://github.com/cbenitez101/EisiApi) -->
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/cbenitez101/EisiApi)
+<!-- [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/cbenitez101/EisiApi) -->
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
-AngularJS-powered HTML5 Markdown editor.
+EISI HOTEL API management class and enums.
 
-- Type some Markdown on the left
+<!-- - Type some Markdown on the left
 - See HTML in the right
-- ✨Magic ✨
+- ✨Magic ✨ -->
 
 ## Features
 
-- Import a HTML file and watch it magically convert to Markdown
-- Drag and drop images (requires your Dropbox account be linked)
-- Import and save files from GitHub, Dropbox, Google Drive and One Drive
-- Drag and drop markdown and HTML files into Dillinger
-- Export documents as Markdown, HTML and PDF
+- EisiApi main class
+- Enum for options values
+- Logging class to manage API output - TextLog and FileLog
+- @TODO: DatabaseLog
 
-Markdown is a lightweight markup language based on the formatting conventions
+<!-- Markdown is a lightweight markup language based on the formatting conventions
 that people naturally use in email.
 As [John Gruber] writes on the [Markdown site][df1]
 
@@ -34,132 +32,153 @@ As [John Gruber] writes on the [Markdown site][df1]
 
 This text you see here is *actually- written in Markdown! To get a feel
 for Markdown's syntax, type some text into the left window and
-watch the results in the right.
+watch the results in the right. -->
 
-## Tech
+## Classes
 
-Dillinger uses a number of open source projects to work properly:
+Main Classes:
 
-- [AngularJS] - HTML enhanced for web apps!
-- [Ace Editor] - awesome web-based text editor
-- [markdown-it] - Markdown parser done right. Fast and easy to extend.
-- [Twitter Bootstrap] - great UI boilerplate for modern web apps
-- [node.js] - evented I/O for the backend
-- [Express] - fast node.js network app framework [@tjholowaychuk]
-- [Gulp] - the streaming build system
-- [Breakdance](https://breakdance.github.io/breakdance/) - HTML
-to Markdown converter
-- [jQuery] - duh
+- EisiApi
+- Log
+  - TextLog
+  - FileLog
+  - DatabaseLog
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
 
-## Installation
+## Eisi Api Enums
+Enums to correctly make requests to the API
+ - EisiApiEnvironment: API environment to select which URL to use.
+   - >Testing = 'Testing'
+   - >Producion = 'Production'
 
-Dillinger requires [Node.js](https://nodejs.org/) v10+ to run.
+ - EisiApiUrl: API URLs depending on which environment is being used.
+   - > Testing = 'http://apitest.eisisoft.com'
+   - > Production = 'https://api.eisisoft.com'
 
-Install the dependencies and devDependencies and start the server.
+ - EisiApiLang: API requests languages
+   - > Espanol = 'es'
+   - > English = 'en'
+   - > Catala = 'ca'
+   - > Francoise = 'fr'
+   - > Italiano = 'it'
+   - > Portugues = 'pt'
+   - > Deutsch = 'de'
 
+ - EisiApiEndpoint: API Endpoints
+   - > LocationTree = '/tasksapi/locationtree'
+   - > ProblemsTree = '/tasksapi/problemstree'
+   - > CreateTask = '/tasksapi/create_task'
+   - > GetDepartmentsForSite = '/tasksapi/getDepartmentsForSite'
+
+ - EisiApiMethod: Request Method
+   - > GET = 'GET'
+   - > POST = 'POST'
+
+ - EisiApiDepartment: selectable departments
+   - > MANTENIMIENTO = 'M'
+   - > LIMPIEZA = 'L'
+   - > IT = 'IT'
+   - > GEX = 'GEX'
+   - > SEGURIDAD = 'SEGURIDAD'
+
+ - EisiApiTreeType: 
+   - > HOTEL = 'H'
+   - > OTRASZONAS = 'OZ'
+
+## Log Enums
+ - LogType: Log Types. @TODO: DatabaseLog
+   - > TextLog = 'TextLog'
+   - > FileLog = 'FileLog'
+   - > DatabaseLog = 'DatabaseLog'
+
+## Usage
+
+Creating class instance
 ```sh
-cd dillinger
-npm i
-node app
+$api = new EisiApi(
+    env: EisiApiEnvironment::Testing,
+    site: 3365,
+    lang: EisiApiLang::Espanol,
+    logType: LogType::FileLog
+);
 ```
 
-For production environments...
+Using Getters and Setters
 
 ```sh
-npm install --production
-NODE_ENV=production node app
+// Get configured environment
+$api->getApiEnv();
+
+// Get configured URL
+$api->getApiUrl();
+
+// Get configured Lang
+$api->getApiLang();
+
+// Get configured Site
+$api->getApiSite();
+
+// Get configured Hash made from password and site combination
+$api->getApiHashedPassword();
+
+// Gets is API is ready to use (boolean)
+$api->getApiIsReady();
+
+// Gets is API is ready to use (human readable)
+$api->getApiIsReadyHuman();
+
+// Set Site
+$api->setApiSite(3365);
+
+// Sets Environment (which sets URL)
+$api->setApiEnv(EisiApiEnvironment::Testing);
+
+// Sets Language
+$api->setApiLanguage(EisiApiLang::Espanol);
+
+// Log an action made with the API using logType
+$api->log("Message");
+
+// Creates Hash and sets password
+$api->setHashedPassword('password');
+
 ```
 
-## Plugins
-
-Dillinger is currently extended with the following plugins.
-Instructions on how to use them in your own application are linked below.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
-
-## Development
-
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantaneously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-
+## Making API call
 ```sh
-node app
-```
+// Get Locations
+$response = $api->makeApiCall(endpoint: EisiApiEndpoint::LocationTree);
 
-Second Tab:
+// Get Problems Tree
+$response = $api->makeApiCall(
+    endpoint: EisiApiEndpoint::ProblemsTree,
+    params: [
+        "departamento" => EisiApiDepartment::MANTENIMIENTO->value,
+        "tip_arbol" => EisiApiTreeType::HOTEL->value
+    ]
+);
 
-```sh
-gulp watch
-```
+// Format TaskBody to create Task
+$body = $api->createTaskBody(
+    service_tag_list: [],
+    habitacion: '124',
+    zona: 8451,
+    problema: 25058,
+    departamento: "L",
+    observaciones: "Pruebas de integración FeelTourist",
+    urls_fotos: [
+        "https://thumbs.dreamstime.com/b/llame-por-tel%C3%A9fono-en-el-dormitorio-19981515.jpg",
+        "https://thumbs.dreamstime.com/z/tel%C3%A9fono-en-la-habitaci%C3%B3n-33046804.jpg"
+    ],
+    remitida_cliente: 1,
+    usuario: "FeelTourist",
+);
 
-(optional) Third:
+// Create Task
+$response = $api->makeApiCall(endpoint: EisiApiEndpoint::CreateTask, body: $body);
 
-```sh
-karma test
-```
-
-#### Building for source
-
-For production release:
-
-```sh
-gulp build --prod
-```
-
-Generating pre-built zip archives for distribution:
-
-```sh
-gulp build dist --prod
-```
-
-## Docker
-
-Dillinger is very easy to install and deploy in a Docker container.
-
-By default, the Docker will expose port 8080, so change this within the
-Dockerfile if necessary. When ready, simply use the Dockerfile to
-build the image.
-
-```sh
-cd dillinger
-docker build -t <youruser>/dillinger:${package.json.version} .
-```
-
-This will create the dillinger image and pull in the necessary dependencies.
-Be sure to swap out `${package.json.version}` with the actual
-version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on
-your host. In this example, we simply map port 8000 of the host to
-port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart=always --cap-add=SYS_ADMIN --name=dillinger <youruser>/dillinger:${package.json.version}
-```
-
-> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
-
-Verify the deployment by navigating to your server address in
-your preferred browser.
-
-```sh
-127.0.0.1:8000
+// Get Departments of a site
+$response = $api->makeApiCall(endpoint: EisiApiEndpoint::GetDepartmentsForSite);
 ```
 
 ## License
@@ -170,23 +189,4 @@ MIT
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+   [git-repo-url]: <https://github.com/cbenitez101/EisiApi.git>

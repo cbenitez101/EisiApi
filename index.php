@@ -26,7 +26,7 @@ require_once 'lib/EisiApi.php';
 $api = new EisiApi(
     env: EisiApiEnvironment::Testing,
     site: 3365,
-    lang: eisiApiLang::Espanol,
+    lang: EisiApiLang::Espanol,
     logType: LogType::FileLog
     // password: ''
 );
