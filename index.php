@@ -27,7 +27,7 @@ $api = new EisiApi(
     env: EisiApiEnvironment::Testing,
     site: 3365,
     lang: EisiApiLang::Espanol,
-    logType: LogType::FileLog
+    logType: LogType::TextLog
     // password: ''
 );
 

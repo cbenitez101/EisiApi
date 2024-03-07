@@ -11,11 +11,6 @@ enum LogType: string
  * Abstract class Log
  */
 abstract class Log {
-    protected $messages;
-    /** Constructor */
-    public function __construct() {
-        $this->messages = array();
-    }
     /** Abstract methods */
     abstract public function log($message);
 
@@ -36,6 +31,11 @@ abstract class Log {
  * Outputs Log text on screen
  */
 class TextLog extends Log {
+    protected $messages;
+    /** Constructor */
+    public function __construct() {
+        $this->messages = array();
+    }
     /**
      * function log
      * @param string $message
@@ -55,7 +55,7 @@ class TextLog extends Log {
     }
 
     public function __destruct() {
-        // print_r("Destructor called");
+        print_r("TextLog Destructor called\n");
         // fclose($this->file);
     }
 }
@@ -71,7 +71,7 @@ class FileLog extends Log {
     /** Constructor */
     public function __construct($file_path=null) {
         /** Parent constructor */
-        parent::__construct();
+        // parent::__construct();
         $file_path = $file_path ?? "./logs/" . date('Y') . "/" . date('m') . "/" . date('d') . "/log_" . date("YmdHis") . ".txt";
         self::prepareFilePath($file_path);
         $this->file_path = $file_path;
@@ -98,7 +98,7 @@ class FileLog extends Log {
     }
     /** Destructor */
     public function __destruct() {
-        // echo "Destructor called";
+        print_r("FileLog Destructor called\n");
     }
 }
 
@@ -109,7 +109,8 @@ class FileLog extends Log {
 // @TODO: Implement DatabaseLog. This is a base class for the DatabaseLog implementation. Inherited classes should implement different database connections and queries.
 class DatabaseLog extends Log {
     public function log($message) {
-        array_push($this->messages, Log::formatMessage($message));
+        print_r("DatabaseLog: " . Log::formatMessage($message) . "\n");
+    //     array_push($this->messages, Log::formatMessage($message));
     }
 
     // public function log() {
@@ -142,7 +143,6 @@ class DatabaseLog extends Log {
     }
 
     public function __destruct() {
-        // echo "Destructor called";
-        // fclose($this->file);
+        print_r("DatabaseLog Destructor called\n");
     }
 }

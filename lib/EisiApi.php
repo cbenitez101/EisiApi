@@ -112,6 +112,10 @@ class EisiApi
         $this->ready = self::setApiIsReady();
     }
 
+    public function __destruct() {
+        $this->log->log("EisiApi Destructor called");
+    }
+
     /** Public Methods */
 
     /** Setters */
