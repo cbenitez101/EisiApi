@@ -27,7 +27,7 @@ $api = new EisiApi(
     env: EisiApiEnvironment::Testing,
     site: 3365,
     lang: EisiApiLang::Espanol,
-    logType: LogType::TextLog
+    logType: LogType::FileLog
     // password: ''
 );
 
@@ -113,9 +113,33 @@ $api->log("TASK-BODY :: " . json_encode($body));
 // $api->log("RESPONSE: " . EisiApiEndpoint::ProblemsTree->value . " : " . json_encode($response));
 
 /**
- * 5. Listado de departamentos
+ * 4. Listado de departamentos
  */
 $response = $api->makeApiCall(endpoint: EisiApiEndpoint::GetDepartmentsForSite);
 $api->log("RESPONSE :: " . EisiApiEndpoint::GetDepartmentsForSite->value . " :: " . json_encode($response));
+
+
+
+/**
+ * 5. Recuperación historico con un solo id_API
+ */
+$response = $api->makeApiCall(
+    endpoint: EisiApiEndpoint::GetHistory,
+    params: [
+        "id_API" => 666979,
+        "page" => 1
+    ]
+);
+$api->log("RESPONSE :: " . EisiApiEndpoint::GetHistory->value . " :: " . json_encode($response));
+
+/** Historico con más de un id_API */
+$response = $api->makeApiCall(
+    endpoint: EisiApiEndpoint::GetHistory,
+    params: [
+        "id_API" => [666979,666980],
+        "page" => 1
+    ]
+);
+$api->log("RESPONSE :: " . EisiApiEndpoint::GetHistory->value . " :: " . json_encode($response));
 
 /** End EisiApi Class Testing */

@@ -42,6 +42,7 @@ enum EisiApiEndpoint: string
     case ProblemsTree = '/tasksapi/problemstree';
     case CreateTask = '/tasksapi/create_task';
     case GetDepartmentsForSite = '/tasksapi/getDepartmentsForSite';
+    case GetHistory = '/tasksapi/get_history';
 }
 
 /**
