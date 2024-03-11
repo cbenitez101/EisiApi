@@ -88,7 +88,7 @@ $api->log("PARAMS :: " . json_encode(
 $api->log("RESPONSE :: " . EisiApiEndpoint::ProblemsTree->value . " :: " . json_encode($response));
 
 /**
- * 3. Crear Task Body
+ * Crear Task Body
  */
 $body = $api->createTaskBody(
     service_tag_list: [],
@@ -107,7 +107,7 @@ $body = $api->createTaskBody(
 $api->log("TASK-BODY :: " . json_encode($body));
 
 /**
- * 4. Alta de Tarea
+ * 3. Alta de Tarea
  */
 // $response = $api->makeApiCall(endpoint: EisiApiEndpoint::CreateTask, body: $body);
 // $api->log("RESPONSE: " . EisiApiEndpoint::ProblemsTree->value . " : " . json_encode($response));
@@ -117,8 +117,6 @@ $api->log("TASK-BODY :: " . json_encode($body));
  */
 $response = $api->makeApiCall(endpoint: EisiApiEndpoint::GetDepartmentsForSite);
 $api->log("RESPONSE :: " . EisiApiEndpoint::GetDepartmentsForSite->value . " :: " . json_encode($response));
-
-
 
 /**
  * 5. Recuperación historico con un solo id_API
