@@ -69,6 +69,7 @@ Enums to correctly make requests to the API
    - > ProblemsTree = '/tasksapi/problemstree'
    - > CreateTask = '/tasksapi/create_task'
    - > GetDepartmentsForSite = '/tasksapi/getDepartmentsForSite'
+   - > GetHistory = '/tasksapi/get_history'
 
  - EisiApiMethod: Request Method
    - > GET = 'GET'
